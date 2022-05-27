@@ -6,4 +6,5 @@ import SwapContract from "./swap-contract";
 import SwapMulticall from "./swap-multicall";
 import SwapReserves from "./swap-reserves";
 
-export { ERC20, ERC721, NFTDao, SwapBalance, SwapContract, SwapMulticall, SwapReserves };
+import { Token, Token721, ChainId } from "./@uniswap/sdk";
+export { ERC20, ERC721, NFTDao, SwapBalance, SwapContract, SwapMulticall, SwapReserves, Token, Token721, ChainId };
