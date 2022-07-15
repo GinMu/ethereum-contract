@@ -151,7 +151,6 @@ export default class SwapMulticall {
       console.debug("Failed to fetch chunk inside retry", error);
       throw error;
     }
-    console.log(resultsBlockNumber.toNumber(), minBlockNumber);
     if (resultsBlockNumber.toNumber() < minBlockNumber) {
       console.debug(`Fetched results for old block number: ${resultsBlockNumber.toString()} vs. ${minBlockNumber}`);
       throw new Error("Fetched for old block number");

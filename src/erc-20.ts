@@ -2,6 +2,7 @@ import SwapMulticall from "./swap-multicall";
 import { Contract } from "@ethersproject/contracts";
 import SwapContract from "./swap-contract";
 import { CurrencyAmount, ETHER, Token, TokenAmount } from "./@uniswap/sdk";
+import BigNumber from "bignumber.js";
 
 export enum ApprovalState {
   UNKNOWN,
@@ -34,6 +35,18 @@ export default class ERC20 {
     if (amount.currency === ETHER) return ApprovalState.APPROVED;
     if (!allowance) return ApprovalState.UNKNOWN;
     return allowance.lessThan(amount) ? ApprovalState.NOT_APPROVED : ApprovalState.APPROVED;
+  }
+
+  public async decimals(): Promise<string> {
+    const res = await this.swapMulticall.useSingleCallResult(this.contract, "decimals");
+    return res?.result?.[0].toString();
+  }
+
+  public async totalSupply(): Promise<string> {
+    const res = await this.swapMulticall.useSingleCallResult(this.contract, "totalSupply");
+    const decimals = await this.decimals();
+    const value = res?.result?.[0].toString();
+    return new BigNumber(value).div(new BigNumber(1).exponentiatedBy(decimals)).toString();
   }
 
   /**
