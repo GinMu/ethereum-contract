@@ -1,6 +1,6 @@
 {
   "name": "@jccdex/ethereum-contract",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "ethereum contract js sdk",
   "main": "lib/index.js",
   "scripts": {
