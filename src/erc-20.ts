@@ -46,7 +46,7 @@ export default class ERC20 {
     const res = await this.swapMulticall.useSingleCallResult(this.contract, "totalSupply");
     const decimals = await this.decimals();
     const value = res?.result?.[0].toString();
-    return new BigNumber(value).div(new BigNumber(1).exponentiatedBy(decimals)).toString();
+    return new BigNumber(value).div(new BigNumber(10).exponentiatedBy(decimals)).toString();
   }
 
   /**
